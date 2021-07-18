@@ -5,3 +5,5 @@
 /.vs
 /JewelryStore.API/.vs/JewelryStore.API/v16
 /JewelryStore.API/obj
+/JewelryStore.API/.vs/JewelryStore.API/config
+/JewelryStore.API/bin/Debug/netcoreapp3.1
