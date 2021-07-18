@@ -30,6 +30,7 @@ namespace JewelryStore.API
             services.AddCors();
             //Configuring the appication dependencies
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IStoreCalculatorService, StoreCalculatorService>();
             services.Configure<Setting>(Configuration.GetSection("Setting"));
         }
 
