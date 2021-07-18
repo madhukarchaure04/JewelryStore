@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/JewelryStore.API/.vs/JewelryStore.API/v16
+/JewelryStore.API/obj
