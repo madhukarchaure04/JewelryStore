@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using DinkToPdf.Contracts;
+using DinkToPdf;
+using JewelryStore.API.Entities;
 
 namespace JewelryStore.API
 {
@@ -28,9 +31,25 @@ namespace JewelryStore.API
             services.AddControllers();
 
             services.AddCors();
-            //Configuring the appication dependencies
+            //Configuring the application dependencies
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IStoreCalculatorService, StoreCalculatorService>();
+            //Resolving dependency for multiple implementation of same interface
+            services.AddScoped<PrintToFileService>();
+            services.AddScoped<PrintToPrinterService>();
+            services.AddScoped<ServiceResolver>(serviceProvider => key =>
+            {
+                switch(key)
+                {
+                    case PrintType.File:
+                        return serviceProvider.GetService<PrintToFileService>();
+                    case PrintType.Paper:
+                        return serviceProvider.GetService<PrintToPrinterService>();
+                    default:
+                        throw new System.Exception("Print service not cofigured for " + key);
+                }
+            });
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.Configure<Setting>(Configuration.GetSection("Setting"));
         }
 
