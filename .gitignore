@@ -7,3 +7,6 @@
 /JewelryStore.API/obj
 /JewelryStore.API/.vs/JewelryStore.API/config
 /JewelryStore.API/bin/Debug/netcoreapp3.1
+/JewelryStore.API/.vs/JewelryStore.API/DesignTimeBuild
+/JewelryStore.API.Test/bin/Debug/netcoreapp3.1
+/JewelryStore.API.Test/obj

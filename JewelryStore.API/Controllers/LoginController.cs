@@ -9,7 +9,7 @@ namespace JewelryStore.API.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private ILoginService loginService;
+        private readonly ILoginService loginService;
 
         /// <summary>
         /// Constructor to inject the dependency for concrete implementation of Login functionality
