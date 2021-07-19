@@ -51,6 +51,9 @@ namespace JewelryStore.API
             });
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.Configure<Setting>(Configuration.GetSection("Setting"));
+
+            //Configuring Swagger
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +65,16 @@ namespace JewelryStore.API
             }
 
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "JewelryStore API V1");
+            });
 
             app.UseRouting();
 
